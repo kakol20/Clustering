@@ -26,15 +26,6 @@ const Random = (function () {
 			return this.randInt() / max;
 		},
 
-		// gaussianRandom() {
-		// 	let u = 0, v = 0;
-
-		// 	while (u === 0) u = this.randFloat();
-		// 	while (v === 0) v = this.randFloat();
-
-		// 	return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
-		// },
-
 		gaussian: (function () {
 			return {
 				default() {
@@ -73,6 +64,6 @@ const Random = (function () {
 					return 0.5 * (1 + erf(value / Math.SQRT2));
 				}
 			}
-		})(),
+		})()
 	}
 })();
