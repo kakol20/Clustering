@@ -63,6 +63,16 @@ const Random = (function () {
 					let value = this.default();
 					return 0.5 * (1 + erf(value / Math.SQRT2));
 				},
+
+				rejection() {
+					let value = -1;
+
+					while (value < 0 || value > 1) {
+						value = (this.default() / 6) + 0.5;
+					}
+
+					return value;
+				}
 			}
 		})()
 	}
