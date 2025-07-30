@@ -47,6 +47,11 @@ function keyPressed() {
 			method = 2;
 			generatePoints();
 			break;
+		case "4":
+			Random.seed = 0;
+			method = 3;
+			generatePoints();
+			break;
 		default:
 		// do nothing
 	}
@@ -55,7 +60,7 @@ function keyPressed() {
 function mouseClicked() {
 	if (isMobileDevice) {
 		method++;
-		method = method % 3;
+		method = method % 4;
 
 		generatePoints();
 	}
@@ -79,25 +84,26 @@ function generatePoints() {
 
 		switch (method) {
 			case 0:
-				x = (Random.gaussian.default() / 3) * (width / 2);
-				y = (Random.gaussian.default() / 3) * (height / 2);
-				point(x + (width / 2), y + (height / 2));
+				x = ((Random.gaussian.default() / 6) + 0.5) * width;
+				y = ((Random.gaussian.default() / 6) + 0.5) * height;
 				break;
 			case 1:
 				x = Random.gaussian.normalized() * width;
 				y = Random.gaussian.normalized() * height;
-				point(x, y);
 				break;
 			case 2:
+				x = Random.gaussian.rejection() * width;
+				y = Random.gaussian.rejection() * height;
+				break;
+			case 3:
 				x = Random.gaussian.cdf() * width;
 				y = Random.gaussian.cdf() * height;
-				point(x, y);
 				break;
 			default:
-				x = (Random.gaussian.default() / 3) * (width / 2);
-				y = (Random.gaussian.default() / 3) * (height / 2);
-				point(x + (width / 2), y + (height / 2));
+				x = ((Random.gaussian.default() / 6) + 0.5) * width;
+				y = ((Random.gaussian.default() / 6) + 0.5) * height;
 		}
+		point(x, y);
 	}
 
 	// ----- DRAW TEXT ON TOP -----
@@ -111,12 +117,15 @@ function generatePoints() {
 
 	switch (method) {
 		case 0:
-			text("Divide by Three", 10, 10, width - 20);
+			text("Divide by Six", 10, 10, width - 20);
 			break;
 		case 1:
 			text("Normalize & Clamp", 10, 10, width - 20);
 			break;
 		case 2:
+			text("Rejection Sampling", 10, 10, width - 20);
+			break;
+		case 3:
 			text("Cumulative Distribution Function", 10, 10, width - 20);
 			break;
 		default:
@@ -131,6 +140,6 @@ function generatePoints() {
 	} else {
 		textAlign(LEFT, BOTTOM);
 		textSize(16);
-		text("Press 1, 2, or 3", 10, height - 10, width - 20);
+		text("Press 1, 2, 3 or 4", 10, height - 10, width - 20);
 	}
 }
