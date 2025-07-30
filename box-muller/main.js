@@ -1,5 +1,3 @@
-let canvasSize = 0;
-
 let fontReg;
 
 const pointsAmount = 1000;
@@ -7,7 +5,7 @@ const pointsAmount = 1000;
 async function setup() {
 	fontReg = await loadFont("../assets/RobotoMono-Regular.ttf");
 
-	canvasSize = Math.min(windowWidth, windowHeight)
+	const canvasSize = Math.min(windowWidth, windowHeight)
 	createCanvas(canvasSize, canvasSize);
 
 	noLoop();
@@ -19,16 +17,18 @@ async function setup() {
 function draw() {
 	background(28);
 
+	Random.seed = 0;
+
 	// ----- DRAW POINTS -----
 
 	strokeWeight(10);
 	stroke(255, 255, 255, 128);
 
 	for (let i = 0; i < pointsAmount; i++) {
-		const x = Random.gaussian.default() * (canvasSize / 2);
-		const y = Random.gaussian.default() * (canvasSize / 2);
+		const x = (Random.gaussian.default() / 3) * (width / 2);
+		const y = (Random.gaussian.default() / 3) * (height / 2);
 
-		point(x + (canvasSize / 2), y + (canvasSize / 2));
+		point(x + (width / 2), y + (height / 2));
 	}
 
 	// ----- DRAW TEXT ON TOP -----
@@ -39,7 +39,7 @@ function draw() {
 
 	textAlign(LEFT, TOP);
 	textSize(20);
-	text("Un-normalized Method", 10, 10, width - 20);
+	text("Divide by Three", 10, 10, width - 20);
 
 	textAlign(LEFT, BOTTOM);
 	textSize(16);
@@ -49,6 +49,7 @@ function draw() {
 function keyPressed() {
 	if (key == "1" || key == "2" || key == "3") {
 		background(28);
+		Random.seed = 0;
 	}
 
 	// console.log(key);
@@ -59,10 +60,10 @@ function keyPressed() {
 		stroke(255, 255, 255, 128);
 
 		for (let i = 0; i < pointsAmount; i++) {
-			const x = Random.gaussian.default() * (canvasSize / 2);
-			const y = Random.gaussian.default() * (canvasSize / 2);
+			const x = (Random.gaussian.default() / 3) * (width / 2);
+			const y = (Random.gaussian.default() / 3) * (height / 2);
 
-			point(x + (canvasSize / 2), y + (canvasSize / 2));
+			point(x + (width / 2), y + (height / 2));
 		}
 
 		// ----- DRAW TEXT ON TOP -----
@@ -73,7 +74,7 @@ function keyPressed() {
 
 		textAlign(LEFT, TOP);
 		textSize(20);
-		text("Un-normalized Method", 10, 10, width - 20);
+		text("Divide by Three", 10, 10, width - 20);
 	}
 	else if (key === "2") {
 		// ----- DRAW POINTS -----
@@ -82,8 +83,8 @@ function keyPressed() {
 		stroke(255, 255, 255, 128);
 
 		for (let i = 0; i < pointsAmount; i++) {
-			const x = Random.gaussian.normalized() * canvasSize;
-			const y = Random.gaussian.normalized() * canvasSize;
+			const x = Random.gaussian.normalized() * width;
+			const y = Random.gaussian.normalized() * height;
 
 			point(x, y);
 		}
@@ -104,8 +105,8 @@ function keyPressed() {
 		stroke(255, 255, 255, 128);
 
 		for (let i = 0; i < pointsAmount; i++) {
-			const x = Random.gaussian.cdf() * canvasSize;
-			const y = Random.gaussian.cdf() * canvasSize;
+			const x = Random.gaussian.cdf() * width;
+			const y = Random.gaussian.cdf() * height;
 
 			point(x, y);
 		}
