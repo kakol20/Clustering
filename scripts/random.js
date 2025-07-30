@@ -37,7 +37,7 @@ const Random = (function () {
 					return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
 				},
 
-				normalized() {
+				normalizedClamped() {
 					const value = this.default();
 					const maxSigma = 3;
 
@@ -72,6 +72,10 @@ const Random = (function () {
 					}
 
 					return value;
+				},
+				
+				normalize() {
+					return (this.default() / 6.0) + 0.5;
 				}
 			}
 		})()
