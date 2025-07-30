@@ -62,7 +62,7 @@ const Random = (function () {
 
 					let value = this.default();
 					return 0.5 * (1 + erf(value / Math.SQRT2));
-				}
+				},
 			}
 		})()
 	}
