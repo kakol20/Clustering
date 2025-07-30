@@ -1,7 +1,5 @@
 let fontReg;
 
-const pointCount = 10000;
-
 async function setup() {
 	fontReg = await loadFont("../assets/RobotoMono-Regular.ttf");
 
@@ -34,6 +32,7 @@ function mouseClicked() {
 }
 
 function generateClusters() {
+	console.clear();
 	background(28);
 
 	const clusterCount = (Random.randInt() % 9) + 8;
@@ -48,21 +47,12 @@ function generateClusters() {
 
 	stroke(255, 28);
 	strokeWeight(10);
-	// point(width / 2, height / 2);
 
-	for (let i = 0; i < pointCount; i++) {
-		const chosenCenter = Random.randInt() % clusterCenters.length;
-		const chosenScalar = 200
+	let points = Clusters.generateClusters(clusterCenters, 200, 10000, width, height);
+	console.log("Points", points);
 
-		let pos = createVector(-1, -1);
-
-		while (pos.x < 0 || pos.y < 0 || pos.x > width || pos.y > height) {
-			pos = createVector((Random.gaussian.normalize() * 2) - 1, (Random.gaussian.normalize() * 2) - 1);
-			pos.mult(chosenScalar);
-			pos.add(clusterCenters[chosenCenter]);
-		}
-
-		point(pos.x, pos.y);
+	for (let i = 0; i < points.length; i++) {
+		point(points[i].x, points[i].y);
 	}
 
 	fill(255);
