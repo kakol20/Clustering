@@ -5,7 +5,7 @@ let fontReg;
 const pointsAmount = 1000;
 
 async function setup() {
-	fontReg = await loadFont("/../assets/RobotoMono-Regular.ttf");
+	fontReg = await loadFont("../assets/RobotoMono-Regular.ttf");
 
 	canvasSize = Math.min(windowWidth, windowHeight)
 	createCanvas(canvasSize, canvasSize);
