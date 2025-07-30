@@ -14,8 +14,8 @@ async function setup() {
 
 	console.log(details, regexp, isMobileDevice);
 
-	const canvasSize = Math.min(windowWidth, windowHeight)
-	createCanvas(canvasSize, canvasSize);
+	// const canvasSize = Math.min(windowWidth, windowHeight)
+	createCanvas(windowWidth, windowHeight);
 
 	Random.seed = Date.now();
 
@@ -46,9 +46,9 @@ function generateClusters() {
 	console.log("Cluster centers", clusterCenters);
 
 	stroke(255, 28);
-	strokeWeight(10);
+	strokeWeight((1 * Math.min(width, height)) / 90);
 
-	let points = Clusters.generateClusters(clusterCenters, 200, 10000, width, height);
+	let points = Clusters.generateClusters(clusterCenters, (2 * Math.max(width, height)) / 9, 10000, width, height);
 	console.log("Points", points);
 
 	for (let i = 0; i < points.length; i++) {
