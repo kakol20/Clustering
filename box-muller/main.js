@@ -33,22 +33,18 @@ function keyPressed() {
 	// console.log(key);
 	switch (key) {
 		case "1":
-			Random.seed = 0;
 			method = 0;
 			generatePoints();
 			break;
 		case "2":
-			Random.seed = 0;
 			method = 1;
 			generatePoints();
 			break;
 		case "3":
-			Random.seed = 0;
 			method = 2;
 			generatePoints();
 			break;
 		case "4":
-			Random.seed = 0;
 			method = 3;
 			generatePoints();
 			break;
@@ -84,12 +80,12 @@ function generatePoints() {
 
 		switch (method) {
 			case 0:
-				x = ((Random.gaussian.default() / 6) + 0.5) * width;
-				y = ((Random.gaussian.default() / 6) + 0.5) * height;
+				x = Random.gaussian.normalize() * width;
+				y = Random.gaussian.normalize() * height;
 				break;
 			case 1:
-				x = Random.gaussian.normalized() * width;
-				y = Random.gaussian.normalized() * height;
+				x = Random.gaussian.normalizedClamped() * width;
+				y = Random.gaussian.normalizedClamped() * height;
 				break;
 			case 2:
 				x = Random.gaussian.rejection() * width;
@@ -129,17 +125,15 @@ function generatePoints() {
 			text("Cumulative Distribution Function", 10, 10, width - 20);
 			break;
 		default:
-			text("Divide by Three", 10, 10, width - 20);
+			text("Divide by Six", 10, 10, width - 20);
 			break;
 	}
 
+	textAlign(LEFT, BOTTOM);
+	textSize(16);
 	if (isMobileDevice) {
-		textAlign(LEFT, BOTTOM);
-		textSize(16);
 		text("Tap to change method", 10, height - 10, width - 20);
 	} else {
-		textAlign(LEFT, BOTTOM);
-		textSize(16);
 		text("Press 1, 2, 3 or 4", 10, height - 10, width - 20);
 	}
 }
