@@ -1,0 +1,24 @@
+# Jekyll build output
+_site/
+
+# Jekyll caches
+.jekyll-cache/
+.sass-cache/
+
+# Ruby bundler
+.bundle/
+
+# OS junk files
+.DS_Store
+
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+*~
+
+# Node modules (if using npm/yarn for JS)
+node_modules/
+
+# If you use any local Ruby gems installs
+vendor/
