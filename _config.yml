@@ -15,5 +15,6 @@ plugins:
 exclude:
   - index_old.html
   - LICENSE
+  - README.md
 
 
