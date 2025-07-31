@@ -9,5 +9,11 @@ sidebar:
   nav: main
 
 plugins:
-- jekyll-remote-theme # add this line to the plugins list if you already have one
-- jekyll-include-cache
+  - jekyll-remote-theme # add this line to the plugins list if you already have one
+  - jekyll-include-cache
+
+exclude:
+  - index_old.html
+  - LICENSE
+
+
