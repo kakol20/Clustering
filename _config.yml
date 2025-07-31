@@ -1,4 +1,13 @@
 title: Clustering
-remote_theme: pages-themes/midnight@v0.2.0
+theme: just-the-docs
+
+# minimal_mistakes_skin: dark
+
+color_scheme: dark
+
+sidebar:
+  nav: main
+
 plugins:
 - jekyll-remote-theme # add this line to the plugins list if you already have one
+- jekyll-include-cache
